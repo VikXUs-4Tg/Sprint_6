@@ -1,18 +1,5 @@
-import pytest
 from selenium import webdriver
-
-class TestClass:
-    driver = None
-
-    @classmethod
-    def setup_class(cls):
-        cls.driver = webdriver.Firefox(options=firefox_options)
-
-    @classmethod
-    def teardown_class(cls):
-        cls.driver.quit()
-
-
+from locators.main_page_locators import MainPageLocators as MPL
 
 firefox_options = webdriver.FirefoxOptions()
 #firefox_options.add_argument('--headless')
@@ -20,7 +7,7 @@ firefox_options.add_argument('--window-size=1024,768')
 
 const = {
 'webpage' : 'https://qa-scooter.praktikum-services.ru/',
-'wait_timer' : 20
+'wait_timer' : 10
 }
 
 control_words = {
@@ -34,3 +21,13 @@ control_words = {
 'drop_down_lists_8' : 'Да, обязательно. Всем самокатов! И Москве, и Московской области.'
 }
 
+drop_down_lists_test_data =                                        [
+[MPL.IMPORTANT_QUESTIONS_1, control_words['drop_down_lists_1']],
+[MPL.IMPORTANT_QUESTIONS_2, control_words['drop_down_lists_2']],
+[MPL.IMPORTANT_QUESTIONS_3, control_words['drop_down_lists_3']],
+[MPL.IMPORTANT_QUESTIONS_4, control_words['drop_down_lists_4']],
+[MPL.IMPORTANT_QUESTIONS_5, control_words['drop_down_lists_5']],
+[MPL.IMPORTANT_QUESTIONS_6, control_words['drop_down_lists_6']],
+[MPL.IMPORTANT_QUESTIONS_7, control_words['drop_down_lists_7']],
+[MPL.IMPORTANT_QUESTIONS_8, control_words['drop_down_lists_8']]
+                                                                    ]

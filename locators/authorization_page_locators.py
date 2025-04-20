@@ -1,0 +1,15 @@
+from selenium.webdriver.common.by import By
+
+
+class AuthorizationPageLocators:
+    BUTTON_NEXT_AND_PLACE_ORDER = (By.XPATH, "//button[@class='Button_Button__ra12g Button_Middle__1CSJM']")
+    FIELD_FOR_ENTRY_NAME = (By.XPATH, "//input[@placeholder='* Имя']")
+    FIELD_FOR_ENTRY_LAST_NAME = (By.XPATH, "//input[@placeholder='* Фамилия']")
+    FIELD_FOR_ENTRY_ADDRESS = (By.XPATH, "//input[@placeholder='* Адрес: куда привезти заказ']")
+    FIELD_FOR_ENTRY_TELEPHONE = (By.XPATH, "//input[@placeholder='* Телефон: на него позвонит курьер']")
+    FIELD_FOR_ENTRY_METRO_STATION = (By.XPATH, "//input[@placeholder='* Станция метро']")
+    FIELD_FOR_ENTRY_DATE = (By.XPATH, "//input[@placeholder='* Когда привезти самокат']")
+    FIELD_FOR_ENTRY_RENTAL_PERIOD = (By.XPATH, "//div[@class='Dropdown-root']")
+    FIELD_FOR_ENTRY_COLOR = (By.XPATH, "//input[contains(text(), 'Цвет самоката')]")
+    FIELD_FOR_ENTRY_RENTAL_COMMENT = (By.XPATH, "//input[@placeholder='Комментарий для курьера']")
+    METRO_STATION_1 = (By.XPATH, "//li[@data-value='1']")
