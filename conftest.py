@@ -22,7 +22,7 @@ def random_last_name():
 def random_address():
     russian_letters = ''.join([chr(i) for i in range(1040, 1104)])
     allowed_chars = russian_letters + string.digits
-    random_address = ''.join(random.choices(allowed_chars, k=random.randint(5, 50)))
+    random_address = ''.join(random.choices(allowed_chars, k=random.randint(5, 49)))
     return random_address
 
 @pytest.fixture(scope='function')
@@ -52,6 +52,17 @@ def random_day_at_week():
 @pytest.fixture(scope='function')
 def random_rent_time():
     random_choice = f"//div[contains(text(), '{random.choice(['сутки', 'двое суток', 'трое суток', 'четверо суток', 'пятеро суток', 'шестеро суток', 'семеро суток'])}') and contains(@class, 'Dropdown-option')]"
-    print(f"random_choice={random_choice}")
     random_rent_time = (By.XPATH, f"{random_choice}")
     return random_rent_time
+
+@pytest.fixture(scope='function')
+def random_color():
+    random_choice = f"//label[contains(text(), '{random.choice(['чёрный жемчуг', 'серая безысходность'])}')]"
+    random_color = (By.XPATH, f"{random_choice}")
+    return random_color
+
+@pytest.fixture(scope='function')
+def random_metro_station():
+    random_choice = f"//li[@data-index='{random.randint(7, 8)}']"
+    random_metro_station = (By.XPATH, f"{random_choice}")
+    return random_metro_station

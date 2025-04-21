@@ -11,4 +11,5 @@ class MainPageLocators:
     IMPORTANT_QUESTIONS_6 = (By.XPATH, "//div[contains(text(), 'Вы привозите зарядку вместе с самокатом?')]")
     IMPORTANT_QUESTIONS_7 = (By.XPATH, "//div[contains(text(), 'Можно ли отменить заказ?')]")
     IMPORTANT_QUESTIONS_8 = (By.XPATH, "//div[contains(text(), 'Я жизу за МКАДом, привезёте?')]")
+    TEXT_FIELD_OF_ELEMENT = (By.XPATH, "./p")
 
