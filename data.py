@@ -2,7 +2,7 @@ from selenium import webdriver
 from locators.main_page_locators import MainPageLocators as MPL
 
 firefox_options = webdriver.FirefoxOptions()
-#firefox_options.add_argument('--headless')
+firefox_options.add_argument('--headless')
 
 const = {
 'WEBPAGE' : 'https://qa-scooter.praktikum-services.ru/',
@@ -15,7 +15,9 @@ const = {
 'DROP_DOWN_LISTS_6' : 'Самокат приезжает к вам с полной зарядкой. Этого хватает на восемь суток — даже если будете кататься без передышек и во сне. Зарядка не понадобится.',
 'DROP_DOWN_LISTS_7' : 'Да, пока самокат не привезли. Штрафа не будет, объяснительной записки тоже не попросим. Все же свои.',
 'DROP_DOWN_LISTS_8' : 'Да, обязательно. Всем самокатов! И Москве, и Московской области.',
-'MADE_ORDER_TITLE_WINDOW' : 'Заказ оформлен'
+'ENTRY_POINTS_LIST' : [1, 2],
+'MADE_ORDER_TITLE_WINDOW' : 'Заказ оформлен',
+'DZEN_URL': 'https://dzen.ru/?yredirect=true'
 }
 
 drop_down_lists_test_data =                                        [

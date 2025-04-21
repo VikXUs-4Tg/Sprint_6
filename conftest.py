@@ -4,6 +4,7 @@ import string
 from datetime import datetime, timedelta
 from selenium.webdriver.common.by import By
 
+
 @pytest.fixture(scope='function')
 def random_name():
     russian_letters = ''.join([chr(i) for i in range(1040, 1104)])
