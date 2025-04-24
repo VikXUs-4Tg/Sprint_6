@@ -1,10 +1,10 @@
 import pytest
 from selenium import webdriver
-from conftest import random_name, random_last_name, random_address, random_telephone, random_comment, random_day_at_week, random_rent_time, random_color, random_metro_station
 from data import  firefox_options, const, drop_down_lists_test_data
 from page_objects.main_page import MainPage
 from page_objects.make_order_page import MakeOrderPage
 import allure
+from conftest import random_name, random_last_name, random_address, random_telephone, random_comment, random_day_at_week, random_rent_time, random_color, random_metro_station
 
 
 class TestClass:
