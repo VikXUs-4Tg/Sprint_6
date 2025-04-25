@@ -6,16 +6,20 @@ import allure
 
 
 class BasePage:
-    start_page = const["WEBPAGE"]
 
-    def __init__(self, driver, wait_timer):
+    def __init__(self, driver, wait_timer, start_page):
         self.driver = driver
         self.wait_timer = wait_timer
+        self.start_page = start_page
         self.wait = WDW(self.driver, wait_timer)
 
     @allure.step("Открываем главную страницу")
-    def open_main_page(self):
-        self.driver.get(self.start_page)
+    def open_page(self, page):
+        self.driver.get(page)
+        self.wait.until(EC.url_contains(page))
+
+    def open_start_page(self):
+        self.open_page(self.start_page)
         self.wait.until(EC.url_contains(self.start_page))
 
     def find_and_focus_by_script(self, element):

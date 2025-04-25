@@ -1,8 +1,32 @@
 import pytest
 import random
 import string
+from selenium import webdriver
+from data import  firefox_options, const
 from datetime import datetime, timedelta
 from selenium.webdriver.common.by import By
+from page_objects.main_page import MainPage
+from page_objects.make_order_page import MakeOrderPage
+
+@pytest.fixture(scope='function')
+def driver():
+    driver = webdriver.Firefox(options=firefox_options)
+    yield driver
+    driver.quit()
+
+@pytest.fixture(scope='function')
+def main_page(driver):
+    main_page = MainPage(driver, wait_timer=const['WAIT_TIMER'], start_page=const["WEBPAGE"])
+    main_page.open_start_page()
+    return main_page
+
+@pytest.fixture(scope='function')
+def make_order_page(driver):
+    make_order_page = MakeOrderPage(driver, wait_timer=const['WAIT_TIMER'], start_page=const["WEBPAGE"])
+    make_order_page.open_start_page()
+    return make_order_page
+
+
 
 
 @pytest.fixture(scope='function')
