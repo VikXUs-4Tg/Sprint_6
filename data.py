@@ -2,7 +2,7 @@ from selenium import webdriver
 from locators.main_page_locators import MainPageLocators as MPL
 
 firefox_options = webdriver.FirefoxOptions()
-#firefox_options.add_argument('--headless')
+firefox_options.add_argument('--headless')
 
 const = {
 'WEBPAGE' : 'https://qa-scooter.praktikum-services.ru/',

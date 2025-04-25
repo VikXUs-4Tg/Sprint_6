@@ -1,12 +1,11 @@
 import pytest
-import random
-import string
+import helpers
 from selenium import webdriver
-from data import  firefox_options, const
-from datetime import datetime, timedelta
 from selenium.webdriver.common.by import By
+from data import firefox_options, const
 from page_objects.main_page import MainPage
 from page_objects.make_order_page import MakeOrderPage
+
 
 @pytest.fixture(scope='class')
 def driver():
@@ -26,68 +25,42 @@ def make_order_page(driver):
     make_order_page.open_start_page()
     return make_order_page
 
-
-
-
 @pytest.fixture(scope='function')
 def random_name():
-    russian_letters = ''.join([chr(i) for i in range(1040, 1104)])
-    allowed_chars = russian_letters
-    name = ''.join(random.choices(allowed_chars, k=random.randint(2, 15)))
-    return name
+    return helpers.generate_random_name()
 
 @pytest.fixture(scope='function')
 def random_last_name():
-    russian_letters = ''.join([chr(i) for i in range(1040, 1104)])
-    allowed_chars = russian_letters
-    last_name = ''.join(random.choices(allowed_chars, k=random.randint(2, 15)))
-    return last_name
+    return helpers.generate_random_last_name()
 
 @pytest.fixture(scope='function')
 def random_address():
-    russian_letters = ''.join([chr(i) for i in range(1040, 1104)])
-    allowed_chars = russian_letters + string.digits
-    random_address = ''.join(random.choices(allowed_chars, k=random.randint(5, 49)))
-    return random_address
+    return helpers.generate_random_address()
 
 @pytest.fixture(scope='function')
 def random_telephone():
-    random_telephone = ''.join(random.choices(string.digits, k=11))  # Генерируем 11 случайных цифр
-    if random.choice([True, False]):
-        random_telephone = '+' + random_telephone
-    return random_telephone
+    return helpers.generate_random_telephone()
 
 @pytest.fixture(scope='function')
 def random_comment():
-    russian_letters = ''.join([chr(i) for i in range(1040, 1104)])
-    allowed_chars = russian_letters + string.digits
-    random_comment = ''.join(random.choices(allowed_chars, k=random.randint(0, 24)))
-    return random_comment
+    return helpers.generate_random_comment()
 
 @pytest.fixture(scope='function')
 def random_day_at_week():
-    day_at_week = datetime.now() + timedelta(random.randint(1, 6))
-    if int(day_at_week.strftime('%d')) in range(1, 6) and int(datetime.now().strftime('%d')) > 6:
-        day_xpath_locator = "//div[contains(@class, 'react-datepicker__day--0" + f"{day_at_week.strftime('%d')}') and contains(@class, 'outside-month')]"
-    else:
-        day_xpath_locator = "//div[contains(@class, 'react-datepicker__day--0" + f"{day_at_week.strftime('%d')}')]"
-    random_day_at_week = (By.XPATH, f"{day_xpath_locator}")
-    return random_day_at_week
+    random_choice = helpers.generate_random_day_at_week()
+    return By.XPATH, random_choice
 
 @pytest.fixture(scope='function')
 def random_rent_time():
-    random_choice = f"//div[contains(text(), '{random.choice(['сутки', 'двое суток', 'трое суток', 'четверо суток', 'пятеро суток', 'шестеро суток', 'семеро суток'])}') and contains(@class, 'Dropdown-option')]"
-    random_rent_time = (By.XPATH, f"{random_choice}")
-    return random_rent_time
+    random_choice = helpers.generate_random_rent_time_xpath()
+    return By.XPATH, random_choice
 
 @pytest.fixture(scope='function')
 def random_color():
-    random_choice = f"//label[contains(text(), '{random.choice(['чёрный жемчуг', 'серая безысходность'])}')]"
-    random_color = (By.XPATH, f"{random_choice}")
-    return random_color
+    random_choice = helpers.generate_random_color_xpath()
+    return By.XPATH, random_choice
 
 @pytest.fixture(scope='function')
 def random_metro_station():
-    random_choice = f"//li[@data-index='{random.randint(7, 8)}']"
-    random_metro_station = (By.XPATH, f"{random_choice}")
-    return random_metro_station
+    random_choice = helpers.generate_random_metro_station_xpath()
+    return By.XPATH, random_choice
