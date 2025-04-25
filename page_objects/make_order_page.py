@@ -1,6 +1,6 @@
-from selenium.webdriver.support import expected_conditions as EC
 from page_objects.base_page import BasePage
 from locators.make_order_page_locators import MakeOrderPageLocators as MOPL
+from selenium.webdriver.support import expected_conditions as EC
 import allure
 
 

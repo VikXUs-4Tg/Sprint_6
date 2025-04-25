@@ -38,11 +38,11 @@ class BasePage:
         self.wait.until(EC.presence_of_element_located(element))
         self.driver.execute_script("arguments[0].click();", self.driver.find_element(*element))
 
-    @allure.step("Находим текстовое поле {target} и вводим в него значение {data}")
-    def entry_data_to_field(self, target, data):
-        self.wait.until(EC.presence_of_element_located(target))
-        self.find_and_focus_by_script(target)
-        self.driver.find_element(*target).send_keys(data)
+    @allure.step("Находим текстовое поле {element} и вводим в него значение {data}")
+    def entry_data_to_field(self, element, data):
+        self.wait.until(EC.presence_of_element_located(element))
+        self.find_and_focus_by_script(element)
+        self.driver.find_element(*element).send_keys(data)
 
     @allure.step("Нажимаем на логотип «Самоката» в хедере")
     def push_logo_scooter(self):
@@ -64,3 +64,17 @@ class BasePage:
     @allure.step("Нажимаем на кнопку «Заказать» в хедере")
     def push_button_place_an_order_in_header(self):
         self.driver.execute_script("arguments[0].click();", self.driver.find_element(*BPL.BUTTON_PLACE_AN_ORDER))
+
+    @allure.step("Находим элемент по значению, взятому из атрибута {attribute} другого элемента {element}")
+    def find_by_attribute_of_another_element(self, initial_locator, element, attribute):
+        method, locator = initial_locator
+        target_locator = self.driver.find_element(*element).get_attribute(attribute)
+        return self.driver.find_element(*(method, target_locator))
+
+    @staticmethod
+    def find_in_parent(parent_of_element, element):
+        return parent_of_element.find_element(*element)
+
+    @staticmethod
+    def wait_visibility_of_element_by_parent(timer, parent, element):
+        WDW(parent, timer).until(EC.visibility_of_element_located(element))

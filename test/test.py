@@ -4,6 +4,8 @@ import allure
 
 # УДАЛИТЬ
 from conftest import driver, main_page, make_order_page, random_name, random_last_name, random_address, random_telephone, random_comment, random_day_at_week, random_rent_time, random_color, random_metro_station
+from helpers import locator_builder
+
 
 class TestSuit1:
 
