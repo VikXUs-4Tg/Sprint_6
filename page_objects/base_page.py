@@ -50,7 +50,7 @@ class BasePage:
 
     @allure.step("Проверяем, что после нажатия на логотип «Самоката» происходит перенаправление на главную страницу")
     def check_push_logo_scooter(self):
-        assert self.wait.until(EC.url_contains(self.start_page)), f'\nОжидаемое значение:\n"{self.start_page}"\nФактическое значение:\n"{self.driver.current_url}"'
+        assert self.wait.until(EC.url_contains(self.start_page)), f"\nОжидаемое значение:\n'{self.start_page}'\nФактическое значение:\n'{self.driver.current_url}'"
 
     @allure.step("Нажимаем на логотип «Яндекс» в хедере")
     def push_logo_yandex(self):
@@ -59,7 +59,7 @@ class BasePage:
     @allure.step("Проверяем, что после нажатия на логотип «Яндекс» происходит перенаправление на страницу Дзен")
     def check_push_logo_yandex(self):
         self.driver.switch_to.window(self.driver.window_handles[-1])
-        assert self.wait.until(EC.url_contains(const['DZEN_URL'])), f'\nОжидаемое значение:\n"{const['DZEN_URL']}"\nФактическое значение:\n"{self.driver.current_url}"'
+        assert self.wait.until(EC.url_contains(const['DZEN_URL'])), f"\nОжидаемое значение:\n'{const['DZEN_URL']}'\nФактическое значение:\n'{self.driver.current_url}'"
 
     @allure.step("Нажимаем на кнопку «Заказать» в хедере")
     def push_button_place_an_order_in_header(self):
