@@ -14,3 +14,7 @@ class MakeOrderPageLocators:
     FIELD_FOR_ENTRY_COLOR =             (By.XPATH, "//input[contains(text(), 'Цвет самоката')]")
     FIELD_FOR_ENTRY_RENTAL_COMMENT =    (By.XPATH, "//input[@placeholder='Комментарий для курьера']")
     TITLE_OF_ORDER_WINDOW =             (By.XPATH, "//div[contains(text(), 'Заказ оформлен') and @class='Order_ModalHeader__3FDaJ']")
+    BILLET_FOR_DAY_AT_WEEK =            (By.XPATH, "//div[contains(@class, 'react-datepicker__day--0%billet%and contains(@class, 'outside-month')]")
+    BILLET_FOR_RENT_TIME =              (By.XPATH, "//div[contains(text(), '%billet%') and contains(@class, 'Dropdown-option')]")
+    BILLET_FOR_COLOR =                  (By.XPATH, "//label[contains(text(), '%billet%')]")
+    BILLET_FOR_METRO_STATION =          (By.XPATH, "//li[@data-index='%billet%']")

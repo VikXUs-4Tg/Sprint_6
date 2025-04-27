@@ -1,10 +1,10 @@
 import pytest
 import helpers
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 from data import firefox_options, const
 from page_objects.main_page import MainPage
 from page_objects.make_order_page import MakeOrderPage
+from locators.make_order_page_locators import MakeOrderPageLocators as MOPL
 
 
 @pytest.fixture(scope='class')
@@ -47,20 +47,16 @@ def random_comment():
 
 @pytest.fixture(scope='function')
 def random_day_at_week():
-    random_choice = helpers.generate_random_day_at_week()
-    return By.XPATH, random_choice
+    return helpers.generate_random_day_at_week(MOPL.BILLET_FOR_DAY_AT_WEEK)
 
 @pytest.fixture(scope='function')
 def random_rent_time():
-    random_choice = helpers.generate_random_rent_time_xpath()
-    return By.XPATH, random_choice
+    return helpers.generate_random_rent_time(MOPL.BILLET_FOR_RENT_TIME)
 
 @pytest.fixture(scope='function')
 def random_color():
-    random_choice = helpers.generate_random_color_xpath()
-    return By.XPATH, random_choice
+    return helpers.generate_random_color(MOPL.BILLET_FOR_COLOR)
 
 @pytest.fixture(scope='function')
 def random_metro_station():
-    random_choice = helpers.generate_random_metro_station_xpath()
-    return By.XPATH, random_choice
+    return helpers.generate_random_metro_station(MOPL.BILLET_FOR_METRO_STATION)

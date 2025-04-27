@@ -5,6 +5,12 @@ from datetime import datetime, timedelta
 
 russian_letters = ''.join([chr(i) for i in range(1040, 1104)])
 
+def strip_billet_locator(locator):
+    start_index = locator.find('%billet%')
+    first_part = locator[:start_index].strip()
+    second_part = locator[start_index + len('%billet%'):].strip()
+    return first_part, second_part
+
 def generate_random_name():
     allowed_chars = russian_letters
     name = ''.join(random.choices(allowed_chars, k=random.randint(2, 15)))
@@ -31,18 +37,26 @@ def generate_random_comment():
     random_comment = ''.join(random.choices(allowed_chars, k=random.randint(0, 24)))
     return random_comment
 
-def generate_random_day_at_week():
+def generate_random_day_at_week(billet):
+    method, locator = billet
+    head, tail = strip_billet_locator(locator)
     day_at_week = datetime.now() + timedelta(random.randint(1, 6))
     if int(day_at_week.strftime('%d')) in range(1, 6) and int(datetime.now().strftime('%d')) > 6:
-        return f"//div[contains(@class, 'react-datepicker__day--0" + f"{day_at_week.strftime('%d')}') and contains(@class, 'outside-month')]"
+        return  method, head + f"{day_at_week.strftime('%d')}') " + tail
     else:
-        return f"//div[contains(@class, 'react-datepicker__day--0" + f"{day_at_week.strftime('%d')}')]"
+        return  method, head + f"{day_at_week.strftime('%d')}')]"
 
-def generate_random_rent_time_xpath():
-    return f"//div[contains(text(), '{random.choice(['сутки', 'двое суток', 'трое суток', 'четверо суток', 'пятеро суток', 'шестеро суток', 'семеро суток'])}') and contains(@class, 'Dropdown-option')]"
+def generate_random_rent_time(billet):
+    method, locator = billet
+    head, tail = strip_billet_locator(locator)
+    return method, head + f"{random.choice(['сутки', 'двое суток', 'трое суток', 'четверо суток', 'пятеро суток', 'шестеро суток', 'семеро суток'])}" + tail
 
-def generate_random_color_xpath():
-    return f"//label[contains(text(), '{random.choice(['чёрный жемчуг', 'серая безысходность'])}')]"
+def generate_random_color(billet):
+    method, locator = billet
+    head, tail = strip_billet_locator(locator)
+    return method, head + f"{random.choice(['чёрный жемчуг', 'серая безысходность'])}" + tail
 
-def generate_random_metro_station_xpath():
-    return f"//li[@data-index='{random.randint(1, 8)}']"
+def generate_random_metro_station(billet):
+    method, locator = billet
+    head, tail = strip_billet_locator(locator)
+    return method, head + f"{random.randint(1, 8)}" + tail
