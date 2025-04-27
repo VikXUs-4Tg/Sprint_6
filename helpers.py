@@ -1,6 +1,7 @@
 import random
 import string
 from datetime import datetime, timedelta
+from data import const
 
 
 russian_letters = ''.join([chr(i) for i in range(1040, 1104)])
@@ -49,12 +50,12 @@ def generate_random_day_at_week(billet):
 def generate_random_rent_time(billet):
     method, locator = billet
     head, tail = strip_billet_locator(locator)
-    return method, head + f"{random.choice(['сутки', 'двое суток', 'трое суток', 'четверо суток', 'пятеро суток', 'шестеро суток', 'семеро суток'])}" + tail
+    return method, head + f"{random.choice(const['RENT_TIME'])}" + tail
 
 def generate_random_color(billet):
     method, locator = billet
     head, tail = strip_billet_locator(locator)
-    return method, head + f"{random.choice(['чёрный жемчуг', 'серая безысходность'])}" + tail
+    return method, head + f"{random.choice(const['COLOR'])}" + tail
 
 def generate_random_metro_station(billet):
     method, locator = billet
