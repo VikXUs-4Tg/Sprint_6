@@ -29,7 +29,6 @@ class BasePage:
 
     @allure.step("Находим и нажимаем элемент {element}")
     def find_and_click(self, element):
-        self.wait.until(EC.presence_of_element_located(element))
         self.find_and_focus_by_script(element)
         self.driver.find_element(*element).click()
 
@@ -40,9 +39,13 @@ class BasePage:
 
     @allure.step("Находим текстовое поле {element} и вводим в него значение {data}")
     def entry_data_to_field(self, element, data):
-        self.wait.until(EC.presence_of_element_located(element))
         self.find_and_focus_by_script(element)
         self.driver.find_element(*element).send_keys(data)
+
+    @allure.step("Возвращаем искомый элемент")
+    def get_element(self, element):
+        self.find_and_focus_by_script(element)
+        return self.driver.find_element(*element)
 
     @allure.step("Нажимаем на логотип «Самоката» в хедере")
     def push_logo_scooter(self):

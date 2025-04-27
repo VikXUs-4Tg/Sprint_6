@@ -32,6 +32,5 @@ class MakeOrderPage(BasePage):
 
     @allure.step('Проверяем на наличие надписи {expected_value}')
     def check_order_window(self, expected_value):
-        self.wait.until(EC.visibility_of_element_located(MOPL.TITLE_OF_ORDER_WINDOW))
-        actually_value = self.driver.find_element(*MOPL.TITLE_OF_ORDER_WINDOW)
+        actually_value = self.get_element(MOPL.TITLE_OF_ORDER_WINDOW)
         assert expected_value in actually_value.text, f'\nОжидаемое значение:\n"{expected_value}"\nФактическое значение:\n"{actually_value.text}"'
